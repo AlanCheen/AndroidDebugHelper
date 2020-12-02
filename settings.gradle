@@ -1,0 +1,3 @@
+include ':debughelper'
+include ':app'
+rootProject.name = "AndroidDebugHelper"
