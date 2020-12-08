@@ -1,4 +1,4 @@
-package me.yifeiyuan.adp
+package me.yifeiyuan.adh
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

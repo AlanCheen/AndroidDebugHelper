@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="me.yifeiyuan.adp.dev">
+    package="me.yifeiyuan.adh.dev">
 
     <application
         android:allowBackup="true"
@@ -8,8 +8,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:name=".App"
         android:theme="@style/Theme.AndroidDebugHelper">
-        <activity android:name=".MainActivity">
+        <activity android:name="me.yifeiyuan.adh.dev.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

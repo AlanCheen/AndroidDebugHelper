@@ -1,4 +1,4 @@
-package me.yifeiyuan.adp.dev
+package me.yifeiyuan.adh.dev
 
 import org.junit.Test
 
