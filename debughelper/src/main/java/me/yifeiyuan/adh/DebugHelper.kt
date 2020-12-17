@@ -14,7 +14,7 @@ object DebugHelper {
 
         this.config = config
 
-        if (config.strictModeEnable) {
+        if (config.enableStrictMode) {
             //adb logcat | grep StrictMode
             StrictMode.setThreadPolicy(
                     StrictMode.ThreadPolicy.Builder()

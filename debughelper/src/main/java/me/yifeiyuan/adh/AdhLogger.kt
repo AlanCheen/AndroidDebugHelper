@@ -13,6 +13,10 @@ object AdhLogger {
         Log.d(TAG, msg)
     }
 
+    fun log(msg: String) {
+
+    }
+
     fun e(msg: String, tr: Throwable = NullPointerException("Adh Default Exception")) {
         Log.e(TAG, "e: $msg", tr)
     }

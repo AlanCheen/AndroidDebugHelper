@@ -51,7 +51,7 @@ dependencies {
 
 apply plugin: "guru.stefma.bintrayrelease"
 
-version = "1.0.0"
+version = "1.0.1"
 group = "me.yifeiyuan"
 
 androidArtifact {

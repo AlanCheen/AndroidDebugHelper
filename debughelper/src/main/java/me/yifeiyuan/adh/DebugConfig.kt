@@ -7,7 +7,7 @@ import android.app.Application
  */
 class DebugConfig {
 
-    var strictModeEnable: Boolean = true
+    var enableStrictMode: Boolean = true
 
     var detectActivityLifecycle: Boolean = true
     var detectFragmentLifecycle: Boolean = true
