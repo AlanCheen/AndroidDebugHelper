@@ -7,32 +7,47 @@ import android.os.StrictMode
  */
 object DebugHelper {
 
-    lateinit var config :DebugConfig
+    lateinit var config: DebugConfig
+
+    sealed class LogLevel {
+        object W : LogLevel()
+        object V : LogLevel()
+        object D : LogLevel()
+        object E : LogLevel()
+        object I : LogLevel()
+        object WTF : LogLevel()
+    }
 
     @JvmStatic
-    fun setup(config :DebugConfig) {
+    fun setup(config: DebugConfig) {
 
         this.config = config
 
-        if (config.enableStrictMode) {
-            //adb logcat | grep StrictMode
-            StrictMode.setThreadPolicy(
-                    StrictMode.ThreadPolicy.Builder()
-                            .detectAll()
-                            .penaltyLog()
-                            .build()
-            )
+        AdhLogger.logLevelConfig = config.logLevel
 
-            StrictMode.setVmPolicy(
-                    StrictMode.VmPolicy.Builder()
-                            .detectAll()
-                            .penaltyLog()
-                            .build()
-            )
-        }
+        setupStrictMode(config)
 
         if (config.detectActivityLifecycle) {
             config.application.registerActivityLifecycleCallbacks(AdhActivityLifecycleCallbacks())
+        }
+    }
+
+    private fun setupStrictMode(config: DebugConfig) {
+        if (config.enableStrictMode) {
+            //adb logcat | grep StrictMode
+            StrictMode.setThreadPolicy(
+                StrictMode.ThreadPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .build()
+            )
+
+            StrictMode.setVmPolicy(
+                StrictMode.VmPolicy.Builder()
+                    .detectAll()
+                    .penaltyLog()
+                    .build()
+            )
         }
     }
 

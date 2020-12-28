@@ -1,6 +1,7 @@
 package me.yifeiyuan.adh.dev
 
 import android.app.Application
+import me.yifeiyuan.adh.AdhLogger
 import me.yifeiyuan.adh.DebugConfig
 import me.yifeiyuan.adh.DebugHelper
 
@@ -15,12 +16,15 @@ class App : Application() {
         if (BuildConfig.DEBUG) {
             DebugConfig().apply {
                 application = this@App
-                strictModeEnable = true
+                enableStrictMode = true
                 detectActivityLifecycle = true
                 detectFragmentLifecycle = true
+                logLevel = DebugHelper.LogLevel.I
             }.also {
                 DebugHelper.setup(it)
             }
         }
+
+        AdhLogger.log("test",true)
     }
 }
