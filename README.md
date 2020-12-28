@@ -13,7 +13,7 @@
 添加依赖：
 
 ```
-implementation 'me.yifeiyuan:debughelper:1.0.0'
+implementation 'me.yifeiyuan:debughelper:1.1.0'
 ```
 
 初始化：
