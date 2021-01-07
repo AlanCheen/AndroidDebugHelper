@@ -38,6 +38,28 @@ class App : Application() {
 }
 ```
 
+## 功能
+
+
+
+### trace binder
+
+打开 Binder 的 trace 功能。
+
+方法是@hide 标记的，通过反射去开启，在 O 以及以上的系统需要配合开发者选项使用。
+
+按系统版本执行 shell 命令即可打开。
+
+```shell
+# Android 10 api 29
+adb shell settings put global hidden_api_policy 1
+# Android 9 api 28
+adb shell settings put global hidden_api_policy_pre_p_apps  1
+adb shell settings put global hidden_api_policy_p_apps 1
+```
+
+
+
 ## 变更日志
 
 ### 1.1.0

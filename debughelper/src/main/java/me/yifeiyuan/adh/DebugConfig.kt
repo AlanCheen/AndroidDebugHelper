@@ -9,7 +9,15 @@ import me.yifeiyuan.adh.DebugHelper.LogLevel
  */
 class DebugConfig {
 
-    var enableStrictMode: Boolean = true
+    /**
+     * 是否打开 Binder.enableTracing()
+     */
+    var tracingBinder: Boolean = false
+
+    /**
+     * 是否启用 StrictMode
+     */
+    var strictMode: Boolean = true
 
     var detectActivityLifecycle: Boolean = true
     var detectFragmentLifecycle: Boolean = true

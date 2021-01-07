@@ -1,5 +1,7 @@
 package me.yifeiyuan.adh
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import me.yifeiyuan.adh.DebugHelper.LogLevel
@@ -13,6 +15,7 @@ object AdhLogger {
 
     var logLevelConfig: LogLevel = LogLevel.D
 
+    private val mainHandler = Handler(Looper.getMainLooper())
 
     /**
      * @param msg 日志消息
@@ -50,13 +53,14 @@ object AdhLogger {
 
         if (toast) {
             val context = DebugHelper.config.application
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+            if (isMainThread()) {
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+            } else {
+                mainHandler.post {
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
-    }
-
-    @JvmStatic
-    fun d(msg: String) {
-        Log.d(TAG, msg)
     }
 
     @JvmStatic
@@ -67,7 +71,8 @@ object AdhLogger {
 
     @JvmStatic
     fun logAndToast(msg: String) {
-        log(msg, true, LogLevel.D)
+        log(msg, true)
     }
 
+    private fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()
 }
