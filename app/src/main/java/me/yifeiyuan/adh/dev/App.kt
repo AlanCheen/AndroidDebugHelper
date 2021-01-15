@@ -16,7 +16,7 @@ class App : Application() {
         if (BuildConfig.DEBUG) {
             DebugConfig().apply {
                 application = this@App
-                strictMode = true
+                enableStrictMode = true
                 detectActivityLifecycle = true
                 detectFragmentLifecycle = true
                 logLevel = DebugHelper.LogLevel.I

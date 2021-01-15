@@ -11,7 +11,7 @@ import me.yifeiyuan.adh.DebugHelper.LogLevel
  */
 object AdhLogger {
 
-    private const val TAG = "AdhLogger"
+    private const val TAG = "ADH"
 
     var logLevelConfig: LogLevel = LogLevel.D
 
@@ -46,8 +46,13 @@ object AdhLogger {
             LogLevel.WTF -> {
                 Log.wtf(TAG, "log() called with: msg = $msg ")
             }
+
             LogLevel.E -> {
                 e(msg)
+            }
+
+            LogLevel.ST -> {
+                e(msg, NullPointerException("ADH Default Exception"))
             }
         }
 
@@ -64,8 +69,7 @@ object AdhLogger {
     }
 
     @JvmStatic
-    @JvmOverloads
-    fun e(msg: String, tr: Throwable = NullPointerException("Adh Default Exception")) {
+    fun e(msg: String, tr: Throwable? = null) {
         Log.e(TAG, "e: $msg", tr)
     }
 

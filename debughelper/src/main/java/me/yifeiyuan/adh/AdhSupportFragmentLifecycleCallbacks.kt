@@ -22,45 +22,43 @@ class AdhSupportFragmentLifecycleCallbacks : FragmentManager.FragmentLifecycleCa
     }
 
     override fun onFragmentPreCreated(
-            fm: FragmentManager,
-            f: Fragment,
-            savedInstanceState: Bundle?
+        fm: FragmentManager,
+        f: Fragment,
+        savedInstanceState: Bundle?
     ) {
         super.onFragmentPreCreated(fm, f, savedInstanceState)
         AdhLogger.log(
-                "onFragmentPreCreated() called with: fm = $fm, f = $f, savedInstanceState = $savedInstanceState"
+            "onFragmentPreCreated() called with: fm = $fm, f = $f, savedInstanceState = $savedInstanceState"
         )
     }
 
     override fun onFragmentCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
         super.onFragmentCreated(fm, f, savedInstanceState)
         AdhLogger.log(
-                "onFragmentCreated() called with: fm = $fm, f = $f, savedInstanceState = $savedInstanceState"
+            "onFragmentCreated() called with: fm = $fm, f = $f, savedInstanceState = $savedInstanceState"
         )
     }
 
     override fun onFragmentActivityCreated(
-            fm: FragmentManager,
-            f: Fragment,
-            savedInstanceState: Bundle?
+        fm: FragmentManager,
+        f: Fragment,
+        savedInstanceState: Bundle?
     ) {
         super.onFragmentActivityCreated(fm, f, savedInstanceState)
         AdhLogger.log(
-
-                "onFragmentActivityCreated() called with: fm = $fm, f = $f, savedInstanceState = $savedInstanceState"
+            "onFragmentActivityCreated() called with: fm = $fm, f = $f, savedInstanceState = $savedInstanceState"
         )
     }
 
     override fun onFragmentViewCreated(
-            fm: FragmentManager,
-            f: Fragment,
-            v: View,
-            savedInstanceState: Bundle?
+        fm: FragmentManager,
+        f: Fragment,
+        v: View,
+        savedInstanceState: Bundle?
     ) {
         super.onFragmentViewCreated(fm, f, v, savedInstanceState)
         AdhLogger.log(
-
-                "onFragmentViewCreated() called with: fm = $fm, f = $f, v = $v, savedInstanceState = $savedInstanceState"
+            "onFragmentViewCreated() called with: fm = $fm, f = $f, v = $v, savedInstanceState = $savedInstanceState"
         )
     }
 
@@ -87,7 +85,7 @@ class AdhSupportFragmentLifecycleCallbacks : FragmentManager.FragmentLifecycleCa
     override fun onFragmentSaveInstanceState(fm: FragmentManager, f: Fragment, outState: Bundle) {
         super.onFragmentSaveInstanceState(fm, f, outState)
         AdhLogger.log(
-                "onFragmentSaveInstanceState() called with: fm = $fm, f = $f, outState = $outState"
+            "onFragmentSaveInstanceState() called with: fm = $fm, f = $f, outState = $outState"
         )
     }
 

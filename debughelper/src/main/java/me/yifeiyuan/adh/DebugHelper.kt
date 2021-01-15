@@ -18,6 +18,11 @@ object DebugHelper {
         object E : LogLevel()
         object I : LogLevel()
         object WTF : LogLevel()
+
+        /**
+         * StackTrace 打印堆栈信息
+         */
+        object ST : LogLevel()
     }
 
     @JvmStatic
@@ -29,9 +34,7 @@ object DebugHelper {
 
         setupStrictMode(config)
 
-        if (config.detectActivityLifecycle) {
-            config.application.registerActivityLifecycleCallbacks(AdhActivityLifecycleCallbacks())
-        }
+        config.application.registerActivityLifecycleCallbacks(AdhActivityLifecycleCallbacks())
 
         if (config.tracingBinder) {
             traceBinder()
@@ -39,7 +42,7 @@ object DebugHelper {
     }
 
     private fun setupStrictMode(config: DebugConfig) {
-        if (config.strictMode) {
+        if (config.enableStrictMode) {
             //adb logcat | grep StrictMode
             StrictMode.setThreadPolicy(
                 StrictMode.ThreadPolicy.Builder()

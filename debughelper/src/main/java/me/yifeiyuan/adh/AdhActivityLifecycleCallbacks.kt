@@ -22,7 +22,9 @@ class AdhActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
-        AdhLogger.log("onActivityCreated() called with: activity = $activity, savedInstanceState = $savedInstanceState")
+        if (DebugHelper.config.detectActivityLifecycle) {
+            AdhLogger.log("onActivityCreated() called with: activity = $activity, savedInstanceState = $savedInstanceState")
+        }
 
         if (DebugHelper.config.detectFragmentLifecycle) {
             if (activity is FragmentActivity) {
@@ -44,27 +46,39 @@ class AdhActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityStarted(activity: Activity) {
-        AdhLogger.log("onActivityStarted() called with: activity = $activity")
+        if (DebugHelper.config.detectActivityLifecycle) {
+            AdhLogger.log("onActivityStarted() called with: activity = $activity")
+        }
     }
 
     override fun onActivityResumed(activity: Activity) {
-        AdhLogger.log("onActivityResumed() called with: activity = $activity")
+        if (DebugHelper.config.detectActivityLifecycle) {
+            AdhLogger.log("onActivityResumed() called with: activity = $activity")
+        }
     }
 
     override fun onActivityPaused(activity: Activity) {
-        AdhLogger.log("onActivityPaused() called with: activity = $activity")
+        if (DebugHelper.config.detectActivityLifecycle) {
+            AdhLogger.log("onActivityPaused() called with: activity = $activity")
+        }
     }
 
     override fun onActivityStopped(activity: Activity) {
-        AdhLogger.log("onActivityStopped() called with: activity = $activity")
+        if (DebugHelper.config.detectActivityLifecycle) {
+            AdhLogger.log("onActivityStopped() called with: activity = $activity")
+        }
     }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
-        AdhLogger.log("onActivitySaveInstanceState() called with: activity = $activity, outState = $outState")
+        if (DebugHelper.config.detectActivityLifecycle) {
+            AdhLogger.log("onActivitySaveInstanceState() called with: activity = $activity, outState = $outState")
+        }
     }
 
     override fun onActivityDestroyed(activity: Activity) {
-        AdhLogger.log("onActivityDestroyed() called with: activity = $activity")
+        if (DebugHelper.config.detectActivityLifecycle) {
+            AdhLogger.log("onActivityDestroyed() called with: activity = $activity")
+        }
 
         if (DebugHelper.config.detectFragmentLifecycle) {
             if (activity is FragmentActivity) {
