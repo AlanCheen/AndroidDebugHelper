@@ -1,5 +1,7 @@
 package me.yifeiyuan.adh
 
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import me.yifeiyuan.adh.DebugHelper.LogLevel
@@ -9,10 +11,11 @@ import me.yifeiyuan.adh.DebugHelper.LogLevel
  */
 object AdhLogger {
 
-    private const val TAG = "AdhLogger"
+    private const val TAG = "ADH"
 
     var logLevelConfig: LogLevel = LogLevel.D
 
+    private val mainHandler = Handler(Looper.getMainLooper())
 
     /**
      * @param msg 日志消息
@@ -43,31 +46,37 @@ object AdhLogger {
             LogLevel.WTF -> {
                 Log.wtf(TAG, "log() called with: msg = $msg ")
             }
+
             LogLevel.E -> {
                 e(msg)
+            }
+
+            LogLevel.ST -> {
+                e(msg, NullPointerException("ADH Default Exception"))
             }
         }
 
         if (toast) {
             val context = DebugHelper.config.application
-            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+            if (isMainThread()) {
+                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+            } else {
+                mainHandler.post {
+                    Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                }
+            }
         }
     }
 
     @JvmStatic
-    fun d(msg: String) {
-        Log.d(TAG, msg)
-    }
-
-    @JvmStatic
-    @JvmOverloads
-    fun e(msg: String, tr: Throwable = NullPointerException("Adh Default Exception")) {
+    fun e(msg: String, tr: Throwable? = null) {
         Log.e(TAG, "e: $msg", tr)
     }
 
     @JvmStatic
     fun logAndToast(msg: String) {
-        log(msg, true, LogLevel.D)
+        log(msg, true)
     }
 
+    private fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()
 }
