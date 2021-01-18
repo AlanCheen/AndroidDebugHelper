@@ -5,7 +5,7 @@
 
 - [x] 监控并打印 Activity 的生命周期
 - [x] 监控并打印 Fragment 的生命周期
-- [x] Debug 日志-->完成
+- [x] Debug 日志
 - [ ] 监控事件点击，未完成
 
 ## 使用教程
@@ -13,7 +13,7 @@
 添加依赖：
 
 ```
-implementation 'me.yifeiyuan:debughelper:1.1.1'
+implementation 'me.yifeiyuan:debughelper:1.1.2'
 ```
 
 初始化：
@@ -123,7 +123,7 @@ adb shell settings put global hidden_api_policy_p_apps 1
 
 - 更新 移动 LogLevel 相关类到 DebugConfig，统一配置项路径，方便管理；
 - 新增 DebugConfig.debuggable 作为总开关，默认为 true;
-
+- 删除 Logger 接口删除;
 
 ### 1.1.1
 
