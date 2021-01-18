@@ -1,12 +1,12 @@
-# AndroidDebugHelper
+# Android Debug Helper（ADH）
 
 
 老是写一些重复的关于 debug 的内容，烦了，想做点事：
 
-- 监控 Activity 的生命周期-->完成
-- 监控 Fragment 的生命周期-->完成
-- Debug 日志-->完成
-- 监控事件点击，未完成
+- [x] 监控并打印 Activity 的生命周期
+- [x] 监控并打印 Fragment 的生命周期
+- [x] Debug 日志-->完成
+- [ ] 监控事件点击，未完成
 
 ## 使用教程
 
@@ -40,7 +40,6 @@ class App : Application() {
 ```
 
 ## 功能
-
 
 ### detectActivityLifecycle
 
@@ -106,7 +105,7 @@ onFragmentResumed()
 
 打开 Binder 的 trace 功能。
 
-方法是@hide 标记的，通过反射去开启，在 O 以及以上的系统需要配合开发者选项使用。
+方法是 @hide 标记的，通过反射去开启，在 O 以及以上的系统需要配合开发者选项使用。
 
 按系统版本执行 shell 命令即可打开。
 
@@ -135,16 +134,16 @@ adb shell settings put global hidden_api_policy_p_apps 1
 
 ### 1.1.0
 
-- 移除 AndroidX 修改为 Support 库，方便集成；
-- 支持配置日志的等级，见 DebugHelper.LogLevel；
+- 删除 AndroidX 修改为 Support 库，方便集成；
+- 新增 支持配置日志的等级，见 DebugHelper.LogLevel；
 - 新增 AdhLogger.log 方法，并支持打印日志的同时弹 toast 提示；
 
 ### 1.0.1
 
-- 修改 strictModeEnable 为 enableStrictMode；
+- 更新 strictModeEnable 为 enableStrictMode；
 
 ### 1.0.0
 
-- 支持开启 StrictMode；
-- 支持监听 Activity 的生命周期并打印；
-- 支持监听 Fragment 的生命周期并打印；
+- 新增 支持开启 StrictMode；
+- 新增 支持监听 Activity 的生命周期并打印；
+- 新增 支持监听 Fragment 的生命周期并打印；
