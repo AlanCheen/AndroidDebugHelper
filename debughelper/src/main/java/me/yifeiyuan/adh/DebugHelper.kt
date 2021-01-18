@@ -1,5 +1,6 @@
 package me.yifeiyuan.adh
 
+import android.annotation.SuppressLint
 import android.os.Binder
 import android.os.StrictMode
 import java.lang.Exception
@@ -11,26 +12,16 @@ object DebugHelper {
 
     lateinit var config: DebugConfig
 
-    sealed class LogLevel {
-        object W : LogLevel()
-        object V : LogLevel()
-        object D : LogLevel()
-        object E : LogLevel()
-        object I : LogLevel()
-        object WTF : LogLevel()
-
-        /**
-         * StackTrace 打印堆栈信息
-         */
-        object ST : LogLevel()
-    }
-
     @JvmStatic
     fun setup(config: DebugConfig) {
 
         this.config = config
 
         AdhLogger.logLevelConfig = config.logLevel
+
+        if (!config.debuggable) {
+            return
+        }
 
         setupStrictMode(config)
 
@@ -63,6 +54,7 @@ object DebugHelper {
     /**
      * adb shell settings put global hidden_api_policy_pre_p_apps  1
      */
+    @SuppressLint("SoonBlockedPrivateApi")
     private fun traceBinder(){
         try {
             val method = Binder::class.java.getDeclaredMethod("enableTracing")

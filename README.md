@@ -24,16 +24,17 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        if (BuildConfig.DEBUG) {
-            DebugConfig().apply {
-                application = this@App
-                enableStrictMode = true
-                detectActivityLifecycle = true
-                detectFragmentLifecycle = true
-                logLevel = DebugHelper.LogLevel.I
-            }.also {
-                DebugHelper.setup(it)
+        DebugConfig().apply {
+            debuggable = BuildConfig.DEBUG
+            application = this@App
+            enableStrictMode = true
+            detectActivityLifecycle = true
+            detectFragmentLifecycle = true
+            logLevel = DebugConfig.LogLevel.I
+        }.also {
+            DebugHelper.setup(it)
         }
+
     }
 }
 ```
@@ -43,34 +44,51 @@ class App : Application() {
 
 ### detectActivityLifecycle
 
-检测并打印 Activity 的生命周期以及相关方法执行情况。
+检测并打印应用所有的 Activity 的生命周期以及相关方法执行情况。
 
-启动 Activity
+打印的日志和 Activity 本身的方法名字略有差异，例如 onCreate 打印的是 onActivityCreated。
+
+下面举例几个常见的 Activity 流程日志：
+
+启动 Activity :
+```
 onActivityCreated()
 onActivityStarted()
 onActivityResumed()
+```
 
-切后台：
+应用切后台：
+```
 onActivityPaused()
 onActivityStopped()
 onActivitySaveInstanceState()
+```
 
-切回 App:
+切后台后切回 App:
+```
 onActivityStarted()
 onActivityResumed()
+```
 
-按返回键退出：
+按返回键退出 Activity：
+```
 onActivityPaused()
 onActivityStopped()
 onActivityDestroyed()
-
+```
 
 ### detectFragmentLifecycle
 
 检测并打印 Fragment 的生命周期以及相关方法执行情况。
 
-静态加载启动一个 Fragment:
+和 Activity 类似，这里打印的也有点差异，例如 onCreated 对应的是 onFragmentCreated 。
 
+配合`detectActivityLifecycle` 可以打印出更全面的日志。
+
+
+举个例子：静态加载启动一个 Fragment:
+
+```
 onActivityCreated()
 onFragmentPreAttached()
 onFragmentAttached()
@@ -82,6 +100,7 @@ onFragmentActivityCreated()
 onFragmentStarted()
 onActivityResumed()
 onFragmentResumed()
+```
 
 ### tracingBinder
 
@@ -99,9 +118,12 @@ adb shell settings put global hidden_api_policy_pre_p_apps  1
 adb shell settings put global hidden_api_policy_p_apps 1
 ```
 
-
-
 ## 变更日志
+
+### 1.1.2
+
+- 更新 移动 LogLevel 相关类到 DebugConfig，统一配置项路径，方便管理；
+- 新增 DebugConfig.debuggable 作为总开关，默认为 true;
 
 
 ### 1.1.1

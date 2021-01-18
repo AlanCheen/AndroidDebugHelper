@@ -4,7 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import android.util.Log
 import android.widget.Toast
-import me.yifeiyuan.adh.DebugHelper.LogLevel
+import me.yifeiyuan.adh.DebugConfig.LogLevel
 
 /**
  * Created by 程序亦非猿 on 2020/12/8.
@@ -68,6 +68,7 @@ object AdhLogger {
         }
     }
 
+    @JvmOverloads
     @JvmStatic
     fun e(msg: String, tr: Throwable? = null) {
         Log.e(TAG, "e: $msg", tr)

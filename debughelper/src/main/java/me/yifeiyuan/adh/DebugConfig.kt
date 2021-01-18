@@ -1,7 +1,6 @@
 package me.yifeiyuan.adh
 
 import android.app.Application
-import me.yifeiyuan.adh.DebugHelper.LogLevel
 
 
 /**
@@ -10,9 +9,16 @@ import me.yifeiyuan.adh.DebugHelper.LogLevel
 class DebugConfig {
 
     /**
-     * 是否打开 Binder.enableTracing()
+     * 是否可调试，总开关，默认开启
      */
-    var tracingBinder: Boolean = false
+    var debuggable = true
+
+    lateinit var application: Application
+
+    /**
+     * 日志等级
+     */
+    var logLevel: LogLevel = LogLevel.D
 
     /**
      * 是否启用 StrictMode
@@ -29,12 +35,27 @@ class DebugConfig {
      */
     var detectFragmentLifecycle: Boolean = true
 
+
+    /**
+     * 是否打开 Binder.enableTracing()
+     */
+    var tracingBinder: Boolean = false
+
     /**
      * 日志等级
      */
-    var logLevel: LogLevel = LogLevel.D
+    sealed class LogLevel {
+        object W : LogLevel()
+        object V : LogLevel()
+        object D : LogLevel()
+        object E : LogLevel()
+        object I : LogLevel()
+        object WTF : LogLevel()
 
-    lateinit var application: Application
-
-
+        /**
+         * StackTrace 打印堆栈信息
+         * 和 E 一样使用 Log.e
+         */
+        object ST : LogLevel()
+    }
 }

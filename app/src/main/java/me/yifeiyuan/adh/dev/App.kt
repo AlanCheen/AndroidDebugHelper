@@ -13,18 +13,17 @@ class App : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        if (BuildConfig.DEBUG) {
-            DebugConfig().apply {
-                application = this@App
-                enableStrictMode = true
-                detectActivityLifecycle = true
-                detectFragmentLifecycle = true
-                logLevel = DebugHelper.LogLevel.I
-            }.also {
-                DebugHelper.setup(it)
-            }
+        DebugConfig().apply {
+            debuggable = BuildConfig.DEBUG
+            application = this@App
+            enableStrictMode = true
+            detectActivityLifecycle = true
+            detectFragmentLifecycle = true
+            logLevel = DebugConfig.LogLevel.I
+        }.also {
+            DebugHelper.setup(it)
         }
 
-        AdhLogger.log("test",true)
+        AdhLogger.log("test", true)
     }
 }
