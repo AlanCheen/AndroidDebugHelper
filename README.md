@@ -119,6 +119,11 @@ adb shell settings put global hidden_api_policy_p_apps 1
 
 ## 变更日志
 
+
+### 1.2.0
+
+- 新增 增加 showcase 能力，可以快速实现一个 List，每个 Item 展示文案并自定义处理点击事件，适用于测试功;
+
 ### 1.1.2
 
 - 更新 移动 LogLevel 相关类到 DebugConfig，统一配置项路径，方便管理；
