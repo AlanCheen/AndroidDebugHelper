@@ -24,11 +24,14 @@ class AdhShowcaseAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = values[position]
         holder.contentView.text = item.content
-        if (item.clickListener != null) {
-            holder.itemView.setOnClickListener(item.clickListener)
-        } else if (item.targetIntent != null) {
-            holder.itemView.setOnClickListener {
-                it.context.startActivity(item.targetIntent)
+
+        holder.itemView.setOnClickListener {
+            if (item.runnable != null) {
+                item.runnable!!.run()
+            } else if (item.targetIntent != null) {
+                holder.itemView.setOnClickListener {
+                    it.context.startActivity(item.targetIntent)
+                }
             }
         }
     }

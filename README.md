@@ -119,9 +119,9 @@ adb shell settings put global hidden_api_policy_p_apps 1
 
 ### showcase 页面
 
-有时候我想写一个页面，页面上面放几个按钮，点击后分别调用一些方法，可能是想测试一些功能，那么就需要有一个页面来承载。
+有时候我想写一个页面，上面放几个按钮，点击后分别调用一些方法来测试一些功能，写多了就不想每次在 XML 中加个Button 那样去实现。
 
-现在 ADH 提供了快速实现这种页面的能力，通过继承 AdhShowcaseActivity 并重写 provideShowcaseItems() 方法来快速实现一个 showcase 的页面。
+所以在 ADH 我提供了快速实现这种页面的能力，通过继承 AdhShowcaseActivity 并重写 provideShowcaseItems() 方法来快速实现一个 showcase 的页面。
 
 举个例子：
 
@@ -131,25 +131,19 @@ class MainActivity : AdhShowcaseActivity() {
     override fun provideShowcaseItems(): List<AdhShowcaseItem> {
 
         return mutableListOf(
-            AdhShowcaseItem().apply {
-                content = "测试项 1"
-                clickListener = View.OnClickListener {
-                    Toast.makeText(this@MainActivity, "点击了测试项 1", Toast.LENGTH_SHORT).show()
-                }
+
+            createShowcaseItem("测试项 1") {
+                Toast.makeText(this@MainActivity, "点击了测试项 1", Toast.LENGTH_SHORT).show()
             },
-            AdhShowcaseItem().apply {
-                content = "测试项 2"
-                clickListener = View.OnClickListener {
-                    Toast.makeText(this@MainActivity, "点击了测试项 2", Toast.LENGTH_SHORT).show()
-                }
+
+            createShowcaseItem("测试项 2") {
+                Toast.makeText(this@MainActivity, "点击了测试项 2", Toast.LENGTH_SHORT).show()
             },
-            AdhShowcaseItem().apply {
-                content = "测试 AdhLogger 异步线程弹 Toast 的能力"
-                clickListener = View.OnClickListener {
-                    Thread { AdhLogger.log("测试异步线程 Toast", true) }.start()
-                }
+
+            createShowcaseItem("测试 AdhLogger 异步线程弹 Toast 的能力") {
+                Thread { AdhLogger.log("测试异步线程 Toast", true) }.start()
             },
-        )
+            )
     }
 }
 ```
@@ -159,6 +153,11 @@ class MainActivity : AdhShowcaseActivity() {
 
 ## 变更日志
 
+
+### 1.2.1
+
+- 修改 修改点击处理逻辑，由设置 View.OnClickListener 变为 Runnable
+- 新增 在 AdhShowcaseActivity 新增 createShowcaseItem 快速创建 AdhShowcaseItem
 
 ### 1.2.0
 
