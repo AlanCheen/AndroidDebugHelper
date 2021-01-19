@@ -20,11 +20,11 @@ object AdhLogger {
     /**
      * @param msg 日志消息
      * @param logLevel 日志等级
-     * @param toast 是否弹 toast
+     * @param showToast 是否弹 toast
      */
     @JvmOverloads
     @JvmStatic
-    fun log(msg: String, toast: Boolean = false, logLevel: LogLevel = logLevelConfig) {
+    fun log(msg: String, showToast: Boolean = false, logLevel: LogLevel = logLevelConfig) {
 
         when (logLevel) {
             LogLevel.V -> {
@@ -56,7 +56,7 @@ object AdhLogger {
             }
         }
 
-        if (toast) {
+        if (showToast) {
             val context = DebugHelper.config.application
             if (isMainThread()) {
                 Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
