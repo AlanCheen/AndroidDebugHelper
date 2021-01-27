@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentActivity
 /**
  * Created by 程序亦非猿 on 2020/12/8.
  */
-class AdhActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
+internal class AdhActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
 
     var adhSupportFragmentLifecycleCallbacks: AdhSupportFragmentLifecycleCallbacks =
         AdhSupportFragmentLifecycleCallbacks()

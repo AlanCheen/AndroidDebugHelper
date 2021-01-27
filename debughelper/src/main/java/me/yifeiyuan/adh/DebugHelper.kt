@@ -3,36 +3,48 @@ package me.yifeiyuan.adh
 import android.annotation.SuppressLint
 import android.os.Binder
 import android.os.StrictMode
-import java.lang.Exception
+import java.util.concurrent.atomic.AtomicBoolean
 
 /**
  * Created by 程序亦非猿 on 2020/12/7.
  */
 object DebugHelper {
 
-    lateinit var config: DebugConfig
+    internal lateinit var config: DebugConfig
+    private var initialized = AtomicBoolean(false)
 
     @JvmStatic
-    fun setup(config: DebugConfig) {
+    fun setup(debugConfig: DebugConfig) {
 
-        this.config = config
-
-        AdhLogger.logLevelConfig = config.logLevel
-
-        if (!config.debuggable) {
+        if (initialized.getAndSet(true)) {
             return
         }
 
-        setupStrictMode(config)
+        if (!debugConfig.debuggable) {
+            return
+        }
+
+        this.config = debugConfig
+
+        setupLogger()
+
+        setupStrictMode()
 
         config.application.registerActivityLifecycleCallbacks(AdhActivityLifecycleCallbacks())
 
-        if (config.tracingBinder) {
+        if (debugConfig.tracingBinder) {
             traceBinder()
         }
     }
 
-    private fun setupStrictMode(config: DebugConfig) {
+    /**
+     * 配置 Logger 涉及到日志，要优先调用。
+     */
+    private fun setupLogger() {
+        AdhLogger.logLevelConfig = config.logLevel
+    }
+
+    private fun setupStrictMode() {
         if (config.enableStrictMode) {
             //adb logcat | grep StrictMode
             StrictMode.setThreadPolicy(
@@ -55,7 +67,7 @@ object DebugHelper {
      * adb shell settings put global hidden_api_policy_pre_p_apps  1
      */
     @SuppressLint("SoonBlockedPrivateApi")
-    private fun traceBinder(){
+    private fun traceBinder() {
         try {
             val method = Binder::class.java.getDeclaredMethod("enableTracing")
             method.isAccessible = true

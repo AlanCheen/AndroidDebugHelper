@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import me.yifeiyuan.adh.R
 
-class AdhShowcaseAdapter(
+internal class AdhShowcaseAdapter(
     private val values: List<AdhShowcaseItem>
 ) : RecyclerView.Adapter<AdhShowcaseAdapter.ViewHolder>() {
 

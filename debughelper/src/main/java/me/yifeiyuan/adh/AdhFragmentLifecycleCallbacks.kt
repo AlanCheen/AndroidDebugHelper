@@ -12,7 +12,7 @@ import android.view.View
  * Created by 程序亦非猿 on 2020/12/8.
  */
 @RequiresApi(Build.VERSION_CODES.O)
-class AdhFragmentLifecycleCallbacks : FragmentManager.FragmentLifecycleCallbacks() {
+internal class AdhFragmentLifecycleCallbacks : FragmentManager.FragmentLifecycleCallbacks() {
 
     override fun onFragmentPreAttached(fm: FragmentManager, f: Fragment, context: Context) {
         super.onFragmentPreAttached(fm, f, context)

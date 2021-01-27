@@ -13,7 +13,7 @@ import me.yifeiyuan.adh.R
 /**
  * A fragment representing a list of Items.
  */
-class AdhShowcaseFragment : Fragment() {
+internal class AdhShowcaseFragment : Fragment() {
 
     private var provider: AdhShowcaseProvider? = null
 

@@ -9,7 +9,7 @@ import android.view.View
 /**
  * Created by 程序亦非猿 on 2020/12/8.
  */
-class AdhSupportFragmentLifecycleCallbacks : FragmentManager.FragmentLifecycleCallbacks() {
+internal class AdhSupportFragmentLifecycleCallbacks : FragmentManager.FragmentLifecycleCallbacks() {
 
     override fun onFragmentPreAttached(fm: FragmentManager, f: Fragment, context: Context) {
         super.onFragmentPreAttached(fm, f, context)

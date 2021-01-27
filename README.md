@@ -154,9 +154,14 @@ class MainActivity : AdhShowcaseActivity() {
 ## 变更日志
 
 
+### 1.2,2
+
+- 更新 修改部分类的可见性为 internal
+- 更新 修改 Foundation.setup()  方法内部调用逻辑
+
 ### 1.2.1
 
-- 修改 修改点击处理逻辑，由设置 View.OnClickListener 变为 Runnable
+- 更新 修改点击处理逻辑，由设置 View.OnClickListener 变为 Runnable
 - 新增 在 AdhShowcaseActivity 新增 createShowcaseItem 快速创建 AdhShowcaseItem
 
 ### 1.2.0

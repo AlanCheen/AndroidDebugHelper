@@ -13,7 +13,7 @@ object AdhLogger {
 
     private const val TAG = "ADH"
 
-    var logLevelConfig: LogLevel = LogLevel.D
+    internal var logLevelConfig: LogLevel = LogLevel.D
 
     private val mainHandler = Handler(Looper.getMainLooper())
 
