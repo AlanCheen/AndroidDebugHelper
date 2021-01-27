@@ -10,10 +10,12 @@
 
 ## 使用教程
 
+[![LatestVersion](https://api.bintray.com/packages/alancheen/maven/debughelper/images/download.svg)](https://bintray.com/alancheen/maven/debughelper/_latestVersion)
+
 添加依赖：
 
 ```
-implementation 'me.yifeiyuan:debughelper:1.1.2'
+implementation 'me.yifeiyuan:debughelper:latest_version'
 ```
 
 初始化：
@@ -154,7 +156,7 @@ class MainActivity : AdhShowcaseActivity() {
 ## 变更日志
 
 
-### 1.2,2
+### 1.2.2
 
 - 更新 修改部分类的可见性为 internal
 - 更新 修改 Foundation.setup() 方法内部调用逻辑，并增加防止多次初始化逻辑
