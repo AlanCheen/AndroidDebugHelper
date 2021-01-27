@@ -13,10 +13,20 @@
 [![LatestVersion](https://api.bintray.com/packages/alancheen/maven/debughelper/images/download.svg)](https://bintray.com/alancheen/maven/debughelper/_latestVersion)
 
 添加依赖：
-
-```
+```groovy
 implementation 'me.yifeiyuan:debughelper:latest_version'
 ```
+
+前置依赖：
+```groovy
+implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+implementation 'com.android.support:support-v4:28.0.0'
+implementation 'com.android.support:recyclerview-v7:28.0.0'
+implementation 'com.android.support.constraint:constraint-layout:2.0.4'
+implementation 'com.android.support:appcompat-v7:28.0.0'
+```
+
+因为自己参与的一些项目不能使用 AndroidX，所以还没使用 AndroidX。
 
 初始化：
 
