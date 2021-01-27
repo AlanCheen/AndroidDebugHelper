@@ -15,8 +15,8 @@ class MainActivity : AdhShowcaseActivity() {
     override fun provideShowcaseItems(): List<AdhShowcaseItem> {
 
         return mutableListOf(
-            createShowcaseItem("测试项 1") {
-                Toast.makeText(this@MainActivity, "点击了测试项 1", Toast.LENGTH_SHORT).show()
+            createShowcaseItem("测试 logAndCopy") {
+                AdhLogger.logAndCopy("测试一下 logAndCopy")
             },
 
             createShowcaseItem("测试 logAndToast") {

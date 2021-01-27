@@ -157,7 +157,8 @@ class MainActivity : AdhShowcaseActivity() {
 ### 1.2,2
 
 - 更新 修改部分类的可见性为 internal
-- 更新 修改 Foundation.setup()  方法内部调用逻辑
+- 更新 修改 Foundation.setup() 方法内部调用逻辑，并增加防止多次初始化逻辑
+- 新增 增加 AdhLogger.logAndCopy() 方法，支持打印日志的同时把日志拷贝到粘贴板
 
 ### 1.2.1
 

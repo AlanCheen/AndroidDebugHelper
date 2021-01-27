@@ -1,5 +1,8 @@
 package me.yifeiyuan.adh
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Handler
 import android.os.Looper
 import android.util.Log
@@ -77,6 +80,18 @@ object AdhLogger {
     @JvmStatic
     fun logAndToast(msg: String) {
         log(msg, true)
+    }
+
+    @JvmStatic
+    fun logAndCopy(msg: String) {
+        log(msg, false)
+
+        var clipboardManager =
+            DebugHelper.config.application.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+
+        val clip: ClipData = ClipData.newPlainText("ADH Log", msg)
+
+        clipboardManager.setPrimaryClip(clip)
     }
 
     private fun isMainThread(): Boolean = Looper.myLooper() == Looper.getMainLooper()
