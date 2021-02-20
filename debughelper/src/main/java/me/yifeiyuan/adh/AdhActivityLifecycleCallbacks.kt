@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentActivity
 /**
  * Created by 程序亦非猿 on 2020/12/8.
  */
+
+private const val TAG_SUFFIX = "ActivityLifecycle"
+
 internal class AdhActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
 
     var adhSupportFragmentLifecycleCallbacks: AdhSupportFragmentLifecycleCallbacks =
@@ -23,7 +26,7 @@ internal class AdhActivityLifecycleCallbacks : Application.ActivityLifecycleCall
 
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         if (DebugHelper.config.detectActivityLifecycle) {
-            AdhLogger.log("onActivityCreated() called with: activity = $activity, savedInstanceState = $savedInstanceState")
+            AdhLogger.log("onActivityCreated() called with: activity = $activity, savedInstanceState = $savedInstanceState",tagSuffix = TAG_SUFFIX)
         }
 
         if (DebugHelper.config.detectFragmentLifecycle) {
@@ -43,41 +46,46 @@ internal class AdhActivityLifecycleCallbacks : Application.ActivityLifecycleCall
                 }
             }
         }
+
+        if (DebugHelper.config.detectViewOnClick) {
+            AdhAccessibilityDelegate.install(activity)
+        }
+
     }
 
     override fun onActivityStarted(activity: Activity) {
         if (DebugHelper.config.detectActivityLifecycle) {
-            AdhLogger.log("onActivityStarted() called with: activity = $activity")
+            AdhLogger.log("onActivityStarted() called with: activity = $activity",tagSuffix = TAG_SUFFIX)
         }
     }
 
     override fun onActivityResumed(activity: Activity) {
         if (DebugHelper.config.detectActivityLifecycle) {
-            AdhLogger.log("onActivityResumed() called with: activity = $activity")
+            AdhLogger.log("onActivityResumed() called with: activity = $activity",tagSuffix = TAG_SUFFIX)
         }
     }
 
     override fun onActivityPaused(activity: Activity) {
         if (DebugHelper.config.detectActivityLifecycle) {
-            AdhLogger.log("onActivityPaused() called with: activity = $activity")
+            AdhLogger.log("onActivityPaused() called with: activity = $activity",tagSuffix = TAG_SUFFIX)
         }
     }
 
     override fun onActivityStopped(activity: Activity) {
         if (DebugHelper.config.detectActivityLifecycle) {
-            AdhLogger.log("onActivityStopped() called with: activity = $activity")
+            AdhLogger.log("onActivityStopped() called with: activity = $activity",tagSuffix = TAG_SUFFIX)
         }
     }
 
     override fun onActivitySaveInstanceState(activity: Activity, outState: Bundle) {
         if (DebugHelper.config.detectActivityLifecycle) {
-            AdhLogger.log("onActivitySaveInstanceState() called with: activity = $activity, outState = $outState")
+            AdhLogger.log("onActivitySaveInstanceState() called with: activity = $activity, outState = $outState",tagSuffix = TAG_SUFFIX)
         }
     }
 
     override fun onActivityDestroyed(activity: Activity) {
         if (DebugHelper.config.detectActivityLifecycle) {
-            AdhLogger.log("onActivityDestroyed() called with: activity = $activity")
+            AdhLogger.log("onActivityDestroyed() called with: activity = $activity",tagSuffix = TAG_SUFFIX)
         }
 
         if (DebugHelper.config.detectFragmentLifecycle) {

@@ -165,6 +165,10 @@ class MainActivity : AdhShowcaseActivity() {
 
 ## 变更日志
 
+### 1.2.3
+
+- 新增 增加对 View.OnClick 事件的监听并打印，目前已经支持 Activity 和 Fragment；
+- 更新 AdhLogger 更新，新增了设置 tagSuffix 的能力，方便过滤日志，另外简化了打印的日志；
 
 ### 1.2.2
 
