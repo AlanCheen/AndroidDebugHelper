@@ -14,7 +14,7 @@ import me.yifeiyuan.adh.DebugConfig.LogLevel
  */
 object AdhLogger {
 
-    private const val TAG = "ADH"
+    private const val TAG = "ADH-"
 
     internal var logLevelConfig: LogLevel = LogLevel.D
 
@@ -22,75 +22,87 @@ object AdhLogger {
 
     /**
      * @param msg 日志消息
+     * @param tagSuffix 日志 Tag 后缀
      * @param logLevel 日志等级
      * @param showToast 是否弹 toast
      */
     @JvmOverloads
     @JvmStatic
-    fun log(msg: String, showToast: Boolean = false, logLevel: LogLevel = logLevelConfig) {
+    fun log(
+        msg: String,
+        tagSuffix: String = "",
+        showToast: Boolean = false,
+        logLevel: LogLevel = logLevelConfig
+    ) {
 
         when (logLevel) {
             LogLevel.V -> {
-                Log.v(TAG, "log() called with: msg = $msg ")
+                Log.v(TAG + tagSuffix, msg)
             }
 
             LogLevel.I -> {
-                Log.i(TAG, "log() called with: msg = $msg ")
+                Log.i(TAG + tagSuffix, msg)
             }
 
             LogLevel.D -> {
-                Log.d(TAG, "log() called with: msg = $msg ")
+                Log.d(TAG + tagSuffix, msg)
             }
 
             LogLevel.W -> {
-                Log.w(TAG, "log() called with: msg = $msg ")
+                Log.w(TAG + tagSuffix, msg)
             }
 
             LogLevel.WTF -> {
-                Log.wtf(TAG, "log() called with: msg = $msg ")
+                Log.wtf(TAG + tagSuffix, msg)
             }
 
             LogLevel.E -> {
-                e(msg)
+                e(msg, tagSuffix)
             }
 
             LogLevel.ST -> {
-                e(msg, NullPointerException("ADH Default Exception"))
+                e(msg, tagSuffix, tr = NullPointerException("ADH Default Exception"))
             }
         }
 
         if (showToast) {
+            //java.lang.IllegalAccessException: Tried to access visual service WindowManager from a non-visual Context:me.yifeiyuan.adh.dev.App@438cc05
+            //似乎是开启了 StrictMode 在 Android 11 上使用 Application 访问 WindowManager 会报这个错，所以加了 try catch。
+            //https://stackoverflow.com/questions/65542592/java-lang-illegalaccessexception-tried-to-access-visual-service-windowmanager-f
             val context = DebugHelper.config.application
-            if (isMainThread()) {
-                Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
-            } else {
-                mainHandler.post {
+            try {
+                if (isMainThread()) {
                     Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                } else {
+                    mainHandler.post {
+                        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+                    }
                 }
+            } catch (e: Exception) {
+                e.printStackTrace()
             }
         }
     }
 
     @JvmOverloads
     @JvmStatic
-    fun e(msg: String, tr: Throwable? = null) {
-        Log.e(TAG, "e: $msg", tr)
+    fun e(msg: String, tagSuffix: String = "", tr: Throwable? = null) {
+        Log.e(TAG + tagSuffix, "e: $msg", tr)
     }
 
     @JvmStatic
-    fun logAndToast(msg: String) {
-        log(msg, true)
+    fun logAndToast(msg: String, tagSuffix: String = "") {
+        log(msg, tagSuffix, showToast = true)
     }
 
     @JvmStatic
-    fun logAndCopy(msg: String) {
-        log(msg, false)
+    fun logAndCopy(msg: String, tagSuffix: String = "") {
+        log(msg, tagSuffix)
 
         var clipboardManager =
             DebugHelper.config.application.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
         val clip: ClipData = ClipData.newPlainText("ADH Log", msg)
-
         clipboardManager.setPrimaryClip(clip)
     }
 

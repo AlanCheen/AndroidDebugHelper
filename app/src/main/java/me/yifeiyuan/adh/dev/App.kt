@@ -16,7 +16,7 @@ class App : Application() {
         DebugConfig().apply {
             debuggable = BuildConfig.DEBUG
             application = this@App
-            enableStrictMode = true
+            enableStrictMode = false
             detectActivityLifecycle = true
             detectFragmentLifecycle = true
             logLevel = DebugConfig.LogLevel.I
@@ -24,6 +24,5 @@ class App : Application() {
             DebugHelper.setup(it)
         }
 
-        AdhLogger.log("test", true)
     }
 }

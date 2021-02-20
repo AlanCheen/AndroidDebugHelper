@@ -42,6 +42,11 @@ class DebugConfig {
     var tracingBinder: Boolean = false
 
     /**
+     * 是否检测 View 的点击时间
+     */
+    var detectViewOnClick :Boolean = true
+
+    /**
      * 日志等级
      */
     sealed class LogLevel {
