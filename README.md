@@ -1,12 +1,18 @@
 # Android Debug Helper（ADH）
 
+最近临时接手了个活，涉及了十几个 SDK，N 个页面，由于对于项目不熟悉，看到页面也根本不知道是在哪个 SDK ，是哪个页面，是 Activity 还是 Fragment，于是我就做了这个 SDK。
 
-老是写一些重复的关于 debug 的内容，烦了，想做点事：
+最开始只是简单的监听 Activity 和 Fragment 的生命周期并打印，让我知道页面的名字，方便去寻找。
 
-- [x] 监控并打印 Activity 的生命周期
-- [x] 监控并打印 Fragment 的生命周期
-- [x] Debug 日志
-- [x] 监控事件点击
+后来想着这种日志其实只应该在开发调试阶段打印，于是顺水推舟加了一些功能，于是有了 Android Debug Helper（简称 ADH）。
+
+目前 ADH 有的功能包括：
+
+- [x] 监听并打印 Activity 的生命周期事件；
+- [x] 监听并打印 Fragment 的生命周期事件（其实不止）；
+- [x] 监听 Activity 和 Fragment 里的 View 的点击事件并打印（还没处理 Dialog PopupWindow 这种）；
+- [x] 日志打印助手 AdhLogger，提供多个打印方法，例如可以支持在打印日志的同时弹 Toast 或拷贝到剪切板；
+- [x] 列表页面的快速实现，提供了一个展示测试功能列表项的 Activity 可以继承；
 
 ## 使用教程
 
@@ -131,7 +137,7 @@ adb shell settings put global hidden_api_policy_p_apps 1
 
 ### showcase 页面
 
-有时候我想写一个页面，上面放几个按钮，点击后分别调用一些方法来测试一些功能，写多了就不想每次在 XML 中加个Button 那样去实现。
+有时候我想写一个页面，上面放几个按钮，点击后分别调用一些方法来测试一些功能，写多了就不想每次在 XML 中加个 Button 那样去实现。
 
 所以在 ADH 我提供了快速实现这种页面的能力，通过继承 AdhShowcaseActivity 并重写 provideShowcaseItems() 方法来快速实现一个 showcase 的页面。
 

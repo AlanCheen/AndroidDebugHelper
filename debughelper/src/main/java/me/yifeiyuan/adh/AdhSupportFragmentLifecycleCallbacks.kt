@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.view.View
+import android.view.ViewGroup
 
 /**
  * Created by 程序亦非猿 on 2020/12/8.
@@ -62,6 +63,11 @@ internal class AdhSupportFragmentLifecycleCallbacks : FragmentManager.FragmentLi
         AdhLogger.log(
             "onFragmentViewCreated() called with: fm = $fm, f = $f, v = $v, savedInstanceState = $savedInstanceState",tagSuffix = TAG_SUFFIX
         )
+        if (DebugHelper.config.detectViewOnClick) {
+            if (v is ViewGroup) {
+                AdhAccessibilityDelegate.setupAccessibilityDelegate(v)
+            }
+        }
     }
 
     override fun onFragmentStarted(fm: FragmentManager, f: Fragment) {
