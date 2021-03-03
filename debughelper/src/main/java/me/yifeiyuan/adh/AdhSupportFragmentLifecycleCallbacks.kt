@@ -10,7 +10,7 @@ import android.view.ViewGroup
 /**
  * Created by 程序亦非猿 on 2020/12/8.
  */
-private const val TAG_SUFFIX = "FragmentLifecycle"
+private const val TAG_SUFFIX = "Lifecycle-Fragment"
 
 internal class AdhSupportFragmentLifecycleCallbacks : FragmentManager.FragmentLifecycleCallbacks() {
 

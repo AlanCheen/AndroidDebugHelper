@@ -9,7 +9,7 @@ import android.support.v4.app.FragmentActivity
  * Created by 程序亦非猿 on 2020/12/8.
  */
 
-private const val TAG_SUFFIX = "ActivityLifecycle"
+private const val TAG_SUFFIX = "Lifecycle-Activity"
 
 internal class AdhActivityLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
 
