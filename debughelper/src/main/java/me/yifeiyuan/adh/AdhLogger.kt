@@ -99,7 +99,7 @@ object AdhLogger {
     fun logAndCopy(msg: String, tagSuffix: String = "") {
         log(msg, tagSuffix)
 
-        var clipboardManager =
+        val clipboardManager =
             DebugHelper.config.application.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
 
         val clip: ClipData = ClipData.newPlainText("ADH Log", msg)
